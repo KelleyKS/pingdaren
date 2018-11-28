@@ -1,0 +1,29 @@
+.SetInfo{
+    .section{
+        background: #fff;
+        p{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            &:last-child{
+                border: none;
+            }
+            span{
+                &:first-child{
+                    width: 90px;
+                    font-size: 16px;
+                }
+                &:nth-child(2){
+                    flex: 1;
+                }
+
+            }
+            img{
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}

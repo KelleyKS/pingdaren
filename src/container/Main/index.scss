@@ -20,5 +20,46 @@
         height: calc(100vh);
         background: #fff;
         width: 100%;
+        dl{
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            dt{
+                width: 150px;
+                text-align: center;
+                img{
+                    border-radius: 50%;
+                    width: 90px;
+                }
+            }
+            dd{
+                flex: 1;
+                line-height: 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                position: relative;
+                img{
+                    position: absolute;
+                    width: 27px;
+                    right: 10px;
+                }
+                h3{
+                    font-weight: normal;
+                }
+                span{
+                    background: #D0A972;
+                    border-radius: 6px;
+                    padding: 2px 5px;
+                    margin-right: 5px;
+                }
+                p{
+                    &:nth-child(2){
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
     }
 }
