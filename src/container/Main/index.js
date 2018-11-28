@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './index.scss'
-import Back from './images/back.png'
+import Back from '../../assets/img/back.png'
+import Right from '../../assets/img/right.png'
 import {Link} from 'react-router-dom'
 import {info} from '../../services/code'
 
@@ -26,9 +27,23 @@ export default class Main extends Component {
             个人中心
         </span>
       </div>
-      <div className='section'>
-        
-      </div>
+      {
+        infoData && <div className='section'>
+        <Link to='/info'>
+          <dl>
+            <dt>
+              <img src={`http://m.pingdaren.cn/${infoData.photo}`}/>
+            </dt>
+            <dd>
+              <h3>{infoData.cnname}</h3>
+              <p><span>{infoData.sex == 1 ? '男' : '女'}</span><span>{infoData.age}</span>
+              <span>{infoData.cnname}</span></p>
+              <p>{infoData.autograph}</p>
+              <img src={Right}/>
+            </dd>
+          </dl></Link>
+        </div>
+      }
     </div>
     )
   }
