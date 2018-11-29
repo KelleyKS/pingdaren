@@ -20,6 +20,7 @@ export default (config => {
   // 注册或者登陆
   'user': '/login/user',
 
-  'info': '/user/info'
-  
+  'info': '/user/info',
+  'list': '/article/list'
+
 })
