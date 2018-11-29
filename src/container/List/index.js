@@ -1,105 +1,46 @@
 import React from 'react'
 import './index.scss'
-import {Input, Rate, Icon} from 'antd';
+import {Input, Icon} from 'antd';
+import {list} from "../../services/code";
 
 const Search = Input.Search;
 
-const data = [
-  {
-    id: 1,
-    name: '张大仙也不美',
-    name1: '办公室游戏兼得，办公室游戏兼得办公室游戏兼得办公室游戏兼得办公室游戏兼得高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    aimg: 'http://m.pingdaren.cn/static/image/image02.png',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 1
-  },
-  {
-    id: 2,
-    name: '张大仙也不美2',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 2
-  },
-  {
-    id: 3,
-    name: '张大仙也不美3',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    aimg: 'http://m.pingdaren.cn/static/image/image02.png',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 3
-  },
-  {
-    id: 4,
-    name: '张大仙也不美4',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    aimg: 'http://m.pingdaren.cn/static/image/image02.png',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 3
-  },
-  {
-    id: 5,
-    name: '张大仙也不美5',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    aimg: 'http://m.pingdaren.cn/static/image/image02.png',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 1
-  },
-  {
-    id: 6,
-    name: '张大仙也不美6',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    aimg: 'http://m.pingdaren.cn/static/image/image02.png',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 3
-  },
-  {
-    id: 7,
-    name: '张大仙也不美7',
-    name1: '办公室游戏兼得，高性价比游戏本自大号的办公室游戏兼得，高性价比游戏本大号的不信心谁谁谁谁谁谁谁谁谁谁谁谁',
-    biati: '评价褒贬不一，iPhone X到底怎么样？',
-    baoliao: '@假货爆料',
-    W3C: '@W3C',
-    aixin: 3366,
-    bx: 6666,
-    tm: 2
-  },
-]
-
 export default class List extends React.Component {
-  constructor(props, content) {
-    super(props, content)
-    this.setState({})
+  constructor(props) {
+    super(props)
+    this.state = {
+      listData: ''
+    }
   }
 
   componentDidMount() {
+    this.getData()
+  }
 
+  getData = () => {
+    let data = ''
+    let images_info =''
+    list().then(res => res.json()).then(res => {
+      if (res.status) {
+        data = res.data.map((item,index) => {
+          let tm = index % 3 ?  1 : 3
+          if(item.images_info.length <= 0){
+            tm = 2
+            images_info = ''
+          }else {
+            images_info = item.images_info[0].path
+          }
+          return {...item, tm, images_info}
+        })
+      }
+      this.setState({
+        listData: data
+      })
+    })
   }
 
   render() {
+    const {listData} =  this.state
     return <div className='list-box'>
       <div className='search-box'>
         <Search
@@ -109,7 +50,7 @@ export default class List extends React.Component {
       </div>
       <div className='list-item-box'>
         {
-          data.map((item, index) => {
+          listData && listData.length > 0 && listData.map((item, index) => {
             let dom = ''
             switch (item.tm) {
               case 1:
@@ -135,12 +76,12 @@ const ListItemOne = ({data}) => {
     <div className='list-item-box-one'>
       <div className='list-item-box-one-left'>
         <div><i></i>{data.name}</div>
-        <div>{data.biati}</div>
-        <div>{data.name1}</div>
+        <div>{data.title}</div>
+        <div>{data.content}</div>
       </div>
       <div className='list-item-box-one-right'>
         <div className='img-box'>
-          <img src={data.aimg} alt=""/>
+          <img src={`http://m.pingdaren.cn/${data.images_info}`} alt=""/>
         </div>
       </div>
     </div>
@@ -152,13 +93,8 @@ const ListItemTwo = ({data}) => {
     <div className='list-item-box-two'>
       <div className='list-item-box-two-left'>
         <div><i></i>{data.name}</div>
-        <div>{data.biati}</div>
-        <div>{data.name1}</div>
-      </div>
-      <div className='list-item-box-one-right'>
-        <div className='img-box'>
-          <img src={data.aimg} alt=""/>
-        </div>
+        <div>{data.title}</div>
+        <div>{data.content}</div>
       </div>
     </div>
     <ListItemBoxBottom data={data}/>
@@ -169,29 +105,28 @@ const ListItemThree = ({data}) => {
     <div className='list-item-box-three'>
       <div className='list-item-box-three-left'>
         <div><i></i>{data.name}</div>
-        <div><img src={data.aimg} alt=""/></div>
-        <div>{data.biati}</div>
-        <div>{data.name1}</div>
+        <div><img src={`http://m.pingdaren.cn/${data.images_info}`} alt=""/></div>
+        <div>{data.title}</div>
+        <div>{data.content}</div>
       </div>
     </div>
     <ListItemBoxBottom data={data}/>
   </div>
 }
 
-const ListItemBoxBottom = ({data}) =>{
-  return  <div className='list-item-box-bottom'>
+const ListItemBoxBottom = ({data}) => {
+  return <div className='list-item-box-bottom'>
     <div className='list-item-box-bottom-left'>
-      <div>{data.baoliao}</div>
-      <div>{data.W3C}</div>
+      <div>{`@${data.classify_name}`}</div>
     </div>
     <div className='list-item-box-bottom-right'>
       <div>
-        <Icon type="heart" style={{marginRight:'4px'}}/>
-        {data.aixin}
+        <Icon type="heart" style={{marginRight: '4px'}}/>
+        {data.like_nub}
       </div>
       <div>
-        <Icon type="edit" style={{marginRight:'4px'}}/>
-        {data.bx}
+        <Icon type="edit" style={{marginRight: '4px'}}/>
+        {data.comment_nub}
       </div>
     </div>
   </div>
