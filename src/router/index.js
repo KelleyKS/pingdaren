@@ -9,6 +9,7 @@ import Add from '../container/Add'
 import Login from '../container/Login'
 import Info from '../container/Info'
 import SetInfo from '../container/SetInfo'
+import Note from '../container/Note'
 
 let history = createBrowserHistory()
 export default class RouterMap extends Component {
@@ -23,6 +24,7 @@ export default class RouterMap extends Component {
             <Route path='/login' component={Login}/>
             <Route path='/info' component={Info}/>
             <Route path='/setInfo' component={SetInfo}/>
+            <Route path='/note' component={Note}/>
 
         </Switch>
         </div>  

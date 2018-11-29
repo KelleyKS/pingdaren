@@ -4,6 +4,7 @@ import Back from '../../assets/img/back.png'
 import Right from '../../assets/img/right.png'
 import {Link} from 'react-router-dom'
 import {info} from '../../services/code'
+import PropTypes from 'prop-types';
 
 export default class Main extends Component {
   constructor(props) {
@@ -12,14 +13,19 @@ export default class Main extends Component {
       infoData: null
     }
   }
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
   componentDidMount(){
     info()
     .then(res => res.json())
     .then(res => this.setState({infoData: res.data}))
   }
+  onGetArticle = (val) => {
+    this.context.router.history.push({pathname: '/note', state: {msg: val}})
+  }
   render() {
     const {infoData} = this.state
-    console.log(infoData, 'info')
     return (<div className='main'>
       <div className='head'>
         <Link to='/'><img src={Back}/></Link>
@@ -42,6 +48,11 @@ export default class Main extends Component {
               <img src={Right}/>
             </dd>
           </dl></Link>
+          <div onClick={() => this.onGetArticle('我的帖子')} className='num'><span>我的帖子</span><span>{infoData.note_nub}<img src={Right}/></span></div>
+          <div onClick={() => this.onGetArticle('我的点评')} className='num'><span>我的点评</span><span>{infoData.comment_nub}<img src={Right}/></span></div>
+          <div onClick={() => this.onGetArticle('我的喜欢')} className='num'><span>我的喜欢</span><span>{infoData.like_nub}<img src={Right}/></span></div>
+          <div onClick={() => this.onGetArticle('我的关注')} className='num'><span>我的关注</span><span>{infoData.follow_nub}<img src={Right}/></span></div>
+          <div onClick={() => this.onGetArticle('我的粉丝')} className='num'><span>我的粉丝</span><span>{infoData.fans_nub}<img src={Right}/></span></div>
         </div>
       }
     </div>

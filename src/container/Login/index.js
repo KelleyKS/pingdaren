@@ -20,8 +20,6 @@ class Login extends Component {
       msg: ''
     }
   }
-  componentDidMount(){
-  }
   onGetCode = () => {
     this.props.form.validateFields((err, values) => {
       const {phone} = values

@@ -25,11 +25,11 @@
             justify-content: center;
             padding: 20px;
             dt{
-                width: 150px;
-                text-align: center;
+                width: 135px;
+                text-align: left;
                 img{
                     border-radius: 50%;
-                    width: 90px;
+                    width: 100px;
                 }
             }
             dd{
@@ -58,6 +58,22 @@
                     &:nth-child(2){
                         font-size: 12px;
                     }
+                }
+            }
+        }
+        .num{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            cursor: pointer;
+            img{
+                width: 22px;
+                vertical-align: middle;
+            }
+            span{
+                font-size: 16px;
+                &:nth-child(2){
+                    color: #D0A972;
                 }
             }
         }
