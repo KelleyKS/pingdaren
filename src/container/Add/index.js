@@ -46,7 +46,7 @@ class Add extends Component {
           </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
+             发布
             </Button>
           </FormItem>
         </Form>
