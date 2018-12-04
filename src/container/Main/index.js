@@ -35,19 +35,21 @@ export default class Main extends Component {
       </div>
       {
         infoData && <div className='section'>
-        <Link to='/info'>
+        
           <dl>
             <dt>
               <img src={`http://m.pingdaren.cn/${infoData.photo}`}/>
             </dt>
-            <dd>
-              <h3>{infoData.cnname}</h3>
-              <p><span>{infoData.sex == 1 ? '男' : '女'}</span><span>{infoData.age}</span>
-              <span>{infoData.cnname}</span></p>
-              <p>{infoData.autograph}</p>
-              <img src={Right}/>
-            </dd>
-          </dl></Link>
+            <Link to='/info'>
+              <dd>
+                <h3>{infoData.cnname}</h3>
+                <p><span>{infoData.sex == 1 ? '男' : '女'}</span><span>{infoData.age}</span>
+                <span>{infoData.cnname}</span></p>
+                <p>{infoData.autograph}</p>
+                <img src={Right}/>
+              </dd>
+            </Link>
+          </dl>
           <div onClick={() => this.onGetArticle('我的帖子')} className='num'><span>我的帖子</span><span>{infoData.note_nub}<img src={Right}/></span></div>
           <div onClick={() => this.onGetArticle('我的点评')} className='num'><span>我的点评</span><span>{infoData.comment_nub}<img src={Right}/></span></div>
           <div onClick={() => this.onGetArticle('我的喜欢')} className='num'><span>我的喜欢</span><span>{infoData.like_nub}<img src={Right}/></span></div>

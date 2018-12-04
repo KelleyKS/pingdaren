@@ -21,3 +21,7 @@ export function info() {
 export function list() {
   return http.get(api.list)
 }
+
+export function setInfo(params) {
+  return http.post(api.setInfo, params)
+}

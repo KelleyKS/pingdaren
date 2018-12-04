@@ -22,8 +22,9 @@
         width: 100%;
         dl{
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 20px;
+            align-items: center;
             dt{
                 width: 135px;
                 text-align: left;
@@ -43,7 +44,7 @@
                 img{
                     position: absolute;
                     width: 27px;
-                    right: 10px;
+                    right: -55px;
                 }
                 h3{
                     font-weight: normal;

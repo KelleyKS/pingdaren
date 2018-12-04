@@ -22,7 +22,7 @@ export default class Info extends Component {
         console.log(infoData)
         return (<div className='Info'>
         <div className='head'>
-            <Link to='/'><img src={Back}/></Link>
+            <Link to='/main'><img src={Back}/></Link>
             <span>
                 基本信息
             </span>

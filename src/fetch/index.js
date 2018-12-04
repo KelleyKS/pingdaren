@@ -2,10 +2,12 @@ import 'whatwg-fetch'
 import 'es6-promise'
 
 const formatUrlencoded = obj => {
+    console.log(obj, 'result')
     let arr = [];
     for (let key in obj) {
         arr.push(`${key}=${obj[key]}`);
     }
+    console.log(arr, 'arr', arr.join('&'))
     return arr.join('&');
 };
 

@@ -21,6 +21,7 @@ export default (config => {
   'user': '/login/user',
 
   'info': '/user/info',
-  'list': '/article/list'
+  'list': '/article/list',
 
+  'setInfo': '/user/update'
 })

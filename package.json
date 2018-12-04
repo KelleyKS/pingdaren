@@ -40,6 +40,8 @@
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.9",
+    "react-native": "^0.57.7",
+    "react-native-picker": "^4.3.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.1.2",
     "sass-loader": "^6.0.6",
